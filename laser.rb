@@ -1,0 +1,12 @@
+class Laser
+
+
+
+
+
+
+
+
+
+
+end
