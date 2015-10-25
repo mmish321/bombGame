@@ -1,7 +1,4 @@
 class Player
-	TURN_INCREMENT = 4.5
-	ACCELERATION = 0.5
-	COLLISION_DISTANCE = 35
 	def initialize
 		@health = 100
 		@image = Gosu::Image.new("media/starfighter.bmp")
@@ -59,14 +56,17 @@ class Player
      end
   end
 
-  def run_into_bombs(bombs)
+  def damage_by_bomb(bombs)
    bombs.reject! do |bomb|
-   	 if Gosu::distance(@x, @y, bomb.x, bomb.y) < 35 then
+   	 if Gosu::distance(@x, @y, bomb.x, bomb.y) < 100 && bomb.exploded_drawn? then
         @health -= 25
         true
       else
         false
       end
+  end
+  def shoot_laser
+  	return Laser.new(@x, @y, @angle)
   end
 
 end
