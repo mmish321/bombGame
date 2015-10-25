@@ -1,6 +1,6 @@
 class Laser
 
-	SPEED = 20
+	SPEED = 40
 	attr_reader :x, :y
 
     def initialize(x,y,angle)

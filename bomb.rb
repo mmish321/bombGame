@@ -8,7 +8,7 @@ class Bomb
 		@y = rand * 480
 		@player = player
 		@window  = window 
-		@explode_time = 100000
+		@explode_time = 5000
 		@exploded = false
 		@start_time = Gosu::milliseconds
 		@exploded_drawn = false

@@ -10,6 +10,7 @@ class GameWindow < Gosu::Window
 		super 640, 480
 		self.caption = "DONT TOUCH THE CUTE BOMBS"
 		@font = Gosu::Font.new(20)
+		@font2 = Gosu::Font.new(100)
 		@background_image = Gosu::Image.new("media/space.png", :tileable => true)
 		@player = Player.new
 		@player.warp(320, 240)
@@ -38,7 +39,7 @@ class GameWindow < Gosu::Window
 		if rand(100) < 4 and @stars.size < 25 then
 			@stars.push(Star.new(@star_anim))
 		end
-		if rand(600) < 4 and @bombs.size < 10
+		if rand(300) < 4 and @bombs.size < 10
 			@bombs.push(Bomb.new(@player , self))
 		end
 		 @lasers.each { |laser|
@@ -73,7 +74,7 @@ class GameWindow < Gosu::Window
 		@font.draw("Score: #{@player.score}", 10, 10, ZOrder::UI, 1.0, 1.0, 0xff_ffff00)
 		@font.draw("Health: #{@player.health}",10, 70 , ZOrder::UI, 1.0, 1.0, 0xff_ffff00)
 		if @player.health <= 0
-			@font.draw("GAME OVER", 300, 240, ZOrder::UI, 1.0, 1.0, 0xff_ffff00)
+			@font2.draw("GAME OVER", 10, 240, ZOrder::UI, 1.0, 1.0, 0xff_ffff00)
 		end
 	end
 
