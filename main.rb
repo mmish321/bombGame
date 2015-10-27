@@ -4,6 +4,7 @@ require_relative "z_order"
 require_relative "star"
 require_relative "bomb"
 require_relative "laser"
+require_relative "superstar"
 
 class GameWindow < Gosu::Window
 	def initialize
@@ -34,9 +35,10 @@ class GameWindow < Gosu::Window
 			@lasers.push(@player.shoot_laser)
 		end
 		@player.move
-		@player.collect_stars(@stars)
+		@player.collect_stars?(@stars)
 		@player.damage_by_bomb(@bombs)
 		if rand(100) < 4 and @stars.size < 25 then
+			@stars.push(SuperStar.new(@star_anim))
 			@stars.push(Star.new(@star_anim))
 		end
 		if rand(300) < 4 and @bombs.size < 10
@@ -46,11 +48,8 @@ class GameWindow < Gosu::Window
 		 	laser.move
 		 }
 		 @bombs.each { |bomb|
-		 	 bomb.hit_by_laser?(@lasers) 
-	
-		 	
+		 	 bomb.hit_by_laser?(@lasers) 		 	
 		 }
-		
 		 @bombs.each { |bomb|
 		 	if bomb.exploded_drawn? == true 
 		 		@bombs.delete(bomb)

@@ -1,3 +1,4 @@
+
 class Player
 	def initialize
 		@health = 100
@@ -46,14 +47,14 @@ class Player
 		@score
 	end
 
- def collect_stars(stars)
-   stars.reject! do |star|
+ def collect_stars?(stars)
+ 	stars.each {|star| 
      if Gosu::distance(@x, @y, star.x, star.y) < 35 then
-       @score += 10
-       true
-     else
-       false
+     	@score += star.points
+     	stars.delete(star)
      end
+ 	}
+ 	
   end
 
   def damage_by_bomb(bombs)
@@ -71,4 +72,4 @@ class Player
 
 end
 end
-end
+
