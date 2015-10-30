@@ -56,6 +56,15 @@ class Player
  	}
  	
   end
+  def run_into_bomb?(bombs)
+ 		bombs.each {|bomb| 
+     if Gosu::distance(@x, @y, bomb.x, bomb.y) < 35 then
+     	@health -= 25
+     	bombs.delete(bomb)
+     end
+ 	}
+ 	
+  end
 
   def damage_by_bomb(bombs)
    bombs.reject! do |bomb|
@@ -68,6 +77,14 @@ class Player
   end
   def shoot_laser
   	return Laser.new(@x, @y, @angle)
+  end
+  def collect_pumpkins?(pumpkins)
+  	pumpkins.each {|pumpkin| 
+     if Gosu::distance(@x, @y, pumpkin.x, pumpkin.y) < 35 then
+     	@health += 5
+     	pumpkins.delete(pumpkin)
+     end
+ 	}
   end
 
 end
